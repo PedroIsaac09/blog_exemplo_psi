@@ -25,18 +25,34 @@ def sobre(request):
 
     return render(request, "about.html", context)
 
+def mensagem(request):
+    context = {
+        "blog": Mensagem.objects.first(),
+    }
+    
+    return render(request, "mensagem.html", context)
+
 def contato(request):
     context = {
         "blog": Blog.objects.first(),
     }
 
-    if request.method == "POST":
-        print(request.POST['nome'])
-        print(request.POST['email'])
-        print(request.POST['telefone'])
-        print(request.POST['mensagem'])
 
-        mensagem = Mensagem(nome=request.POST['nome'], email=request.POST['email'], telefone=request.POST['telefone'], mensagem=request.POST['mensagem'])
+
+    if request.method == "POST":
+        context['error'] = {}
+        if not request.POST['nome']:
+            context['error']['nome'] = True
+        if not request.POST['email']:
+            context['error']['email'] = True
+        if not request.POST['telefone']:
+            context['error']['telefone'] = True
+        if not request.POST['mensagem']:
+            context['error']['mensagem'] = True
+        if context['error']:
+            return render(request, "contact.html", context)
+
+        mensagem = Mensagem(nome=request.POST['nome'], email=request.POST['email'], telefone=request.POST['telefone'], mensagem=request.POST['mensagem'], cidade=request.POST['cidade'])
         mensagem.save()
 
         return render(request, "contact.html", context)

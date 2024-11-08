@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('{{ blog.capa.url }}')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1>Mensagens</h1>
+                        <span class="subheading">Dúvidas?.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock header %}
+
+{% block content %}
+    <!-- Main Content-->
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <!-- Post preview-->
+                {% for mensagem in mensagem %}
+                    <div class="post-preview">
+                        <a href="{% url 'mensagem' mensagem.id %}">
+                            <h2 class="post-title">{{ post.titulo }}</h2>
+                            <h3 class="post-subtitle">{{ post.subtitulo }}</h3>
+                        </a>
+                        <p class="post-meta">
+                            Postado por
+                            <a href="#!">{{ post.usuario.username }}</a>
+                            em {{ post.data_criacao }}
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                {% endfor %}
+    {% endblock content %}
