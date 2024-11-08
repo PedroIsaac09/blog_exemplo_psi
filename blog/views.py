@@ -25,9 +25,10 @@ def sobre(request):
 
     return render(request, "about.html", context)
 
-def mensagem(request):
+def mensagens(request):
     context = {
-        "blog": Mensagem.objects.first(),
+        "mensagens": Mensagem.objects.all(),
+        "blog": Blog.objects.first(),
     }
     
     return render(request, "mensagem.html", context)
@@ -35,6 +36,7 @@ def mensagem(request):
 def contato(request):
     context = {
         "blog": Blog.objects.first(),
+        
     }
 
 
