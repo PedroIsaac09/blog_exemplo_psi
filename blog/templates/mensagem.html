@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}Mensagens{% endblock title %}
+
 {% block header %}
     <!-- Page Header-->
     <header class="masthead" style="background-image: url('{{ blog.capa.url }}')">
@@ -8,8 +10,8 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="page-heading">
-                        <h1>Mensagem</h1>
-                        <span class="subheading">Todas as mensagens aqui!</span>
+                        <h1>Mensagens</h1>
+                        <span class="subheading">Suas mensagens aqui!</span>
                     </div>
                 </div>
             </div>
@@ -31,9 +33,17 @@
                         </a>
                         <p class="post-meta">
                             Postado por
-                            <a href="#!">{{ mensagem.nome }}</a>
+                            <a href="#!">{{ mensagem.email }}</a>
+                            {% if mensagem.cidade %}
                             em {{ mensagem.cidade }}
+                            {% endif %}
                         </p>
+                        <a href="{% url 'deletar_mensagem' mensagem.id %}">
+                            <button class="btn btn-danger btn-sm">Deletar</button>
+                        </a>
+                        <a href="{% url 'editar_mensagem' mensagem.id %}">
+                            <button class="btn btn-warning btn-sm">Editar</button>
+                        </a>
                     </div>
                     <!-- Divider-->
                     <hr class="my-4" />

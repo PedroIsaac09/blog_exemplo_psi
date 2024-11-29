@@ -8,8 +8,8 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="page-heading">
-                        <h1>Contato</h1>
-                        <span class="subheading">Dúvidas? Eu tenho respostas.</span>
+                        <h1>Deletar Contato</h1>
+                        <span class="subheading">Deletar contato?</span>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,6 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    <p>Quer entrar em contato? Envie uma menssagem e responderei assim que possível.</p>
                     <div class="my-5">
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
@@ -34,15 +33,9 @@
                         <!-- to get an API token!-->
                         <form id="contactForm" method="POST">
                             {% csrf_token %}
-                            {%for field in form%}
-                            <div class="form-floating">
-                                {{field.erros}}
-                                {{field}}
-                                {{field.label_tag}}
-                            </div>
-                            {%endfor%}
-                            <!-- Submit Button-->
-                            <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Enviar</button>
+                            <h3>Tem certeza?</h3>
+                            <button class="btn btn-danger text-uppercase" id="submitButton" type="submit">SIM</button>
+                            <a class="btn btn-primary text-uppercase" id="submitButton" type="submit" href="{% url 'mensagens' %}">NÃO</a>
                         </form>
                     </div>
                 </div>
